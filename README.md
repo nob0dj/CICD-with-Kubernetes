@@ -2,15 +2,15 @@
 KUT CI/CD with Kubernetes
 
 ### Labs Server List
-| Server Name        | Server Hostname               | Specs                           | IP Address     | Port Forwarding |
-| ------------------ | ----------------------------- | ------------------------------- | -------------- | --------------- |
-| windev             | windev                        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.10  |  -               |
-| gitLab             | gitLab.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.30  |  80             |
-| jenkins            | jeninks.ideacube.co.kr        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  8080           |
-| harbor             | harbor.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  9090           |
-| k8s-control        | k8s-control.ideacube.co.kr    | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.101 |                 |
-| worker-node-01     | worker-node-01.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |                 |
-| worker-node-02     | worker-node-02.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |                 |
+| Server Name        | Server Hostname               | Specs                           | IP Address     | Port Forwarding(ssh) | Port Forwarding(http) |
+| ------------------ | ----------------------------- | ------------------------------- | -------------- | -------------------- | --------------------- |
+| windev             | windev                        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.10  |  -                   |  -                    |  
+| gitLab             | gitLab.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.30  |  22                  |  8080                 |
+| jenkins            | jeninks.ideacube.co.kr        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  23                  |  80                   |
+| harbor             | harbor.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  24                  |  9090                 |
+| k8s-control        | k8s-control.ideacube.co.kr    | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.101 |  25                  |  -                    |
+| worker-node-01     | worker-node-01.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  26                  |  -                    |
+| worker-node-02     | worker-node-02.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  27                  |  -                    |
 
 ### Visual Studio Code & VirtualBox
 
