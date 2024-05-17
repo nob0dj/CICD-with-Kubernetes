@@ -235,4 +235,17 @@ KUT CI/CD with Kubernetes
      
 - Maven 
 
-          sudo apt install maven     
+          sudo apt install maven
+
+- Git config(Local)
+
+          git config user.name "Dennis"
+          git config user.email "itgenius1004@gmail.com"
+          git config --list
+
+- Git config(Global)
+
+          git config --global user.name "Dennis"
+          git config --global user.email "itgenius1004@gmail.com"
+
+
