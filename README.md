@@ -222,7 +222,15 @@ KUT CI/CD with Kubernetes
           => logout
           newgrp docker
           docker run hello-world
-  
-          
 
-          
+- Java(17)
+
+          sudo apt update
+          sudo apt install fontconfig openjdk-17-jre
+          java -version
+
+- Git
+          sudo apt install git
+     
+- Maven 
+          sudo apt install maven     
