@@ -39,3 +39,44 @@ gitlab.ideacube.co.kr         192.168.15.30
           # Pin the version to limit auto-updates: sudo apt-mark hold gitlab-ce
           # Show what packages are held back: sudo apt-mark showhold
 
+jenkins.ideacube.co.kr        192.168.15.40
+
+          sudo apt-get update
+          sudo apt-get install fontconfig openjdk-17-jre
+          java -version
+          sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+            https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+          echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+            https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+            /etc/apt/sources.list.d/jenkins.list > /dev/null
+          sudo apt-get install jenkins
+
+harbor.ideacube.co.kr         192.168.15.50
+
+          apt update && sudo apt full-upgrade
+          apt install apt-transport-https ca-certificates curl 
+          
+          # Add Docker's official GPG key:
+          sudo apt-get update
+          sudo apt-get install ca-certificates curl
+          sudo install -m 0755 -d /etc/apt/keyrings
+          sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+          sudo chmod a+r /etc/apt/keyrings/docker.asc
+          
+          # Add the repository to Apt sources:
+          echo \
+            "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+            $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+            sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+          sudo apt-get update
+          
+          sudo apt-get install docker-ce docker-ce-cli containerd docker-buildx-plugin docker-compose-plugin
+          
+          sudo docker run hello-world
+          sudo groupadd docker
+          sudo usermod -aG docker $USER
+          => logout
+          newgrp docker
+          docker run hello-world
+
+          
