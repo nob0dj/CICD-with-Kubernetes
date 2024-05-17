@@ -81,6 +81,11 @@ KUT CI/CD with Kubernetes
           # password : -> /var/jenkins_home/secrets/initialAdminPassword
 
           # Install Git, Maven, Docker
+          # Settins Docker insecure
+          user1@jenkins:/etc/docker$ cat daemon.json
+          {
+                  "insecure-registries": ["harbor.ideacube.co.kr"]
+          }
 
 - harbor.ideacube.co.kr         192.168.15.50
 
@@ -128,6 +133,15 @@ KUT CI/CD with Kubernetes
 
           # id : admin
           # password : Harbor12345 -> harbor.yml
+
+          docker pull nginx:alpine
+          docker images
+          
+          # harbor-domain.com/project/image:version
+          # 'harbor.ideacube.co.kr/library/nginx:alpine' -> the default tag 'nginx:alpine'
+          
+          docker tag nginx:alpine harbor.ideacube.co.kr/library/nginx:alpine
+          docker push harbor.ideacube.co.kr/library/nginx:alpine          
 
 
 - k8s-control.ideacube.co.kr    192.168.15.101 
