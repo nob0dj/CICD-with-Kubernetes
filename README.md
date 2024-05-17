@@ -70,7 +70,7 @@ harbor.ideacube.co.kr         192.168.15.50
             sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
           sudo apt-get update
           
-          sudo apt-get install docker-ce docker-ce-cli containerd docker-buildx-plugin docker-compose-plugin
+          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
           
           sudo docker run hello-world
           sudo groupadd docker
@@ -78,5 +78,71 @@ harbor.ideacube.co.kr         192.168.15.50
           => logout
           newgrp docker
           docker run hello-world
+          
+          cd /tmp
+          curl -s https://api.github.com/repos/goharbor/harbor/releases/latest | grep browser_download_url | cut -d '"' -f 4 | grep '\.tgz$' | wget -i -
+          
+          tar -xzvf harbor-offline-installer-v2.10.2.
+          sudo mv harbor /opt/
+          
+          cp harbor.yml.tmpl harbor.yml
+          sudo vi harbor.yml
+          hostname : harbor.ideacube.co.kr
+          #https <- comment
+          harbor_admin_password : 
+          database :
+          
+          sudo ./prepare.sh
+          sudo ./install.sh
 
+
+k8s-control.ideacube.co.kr    192.168.15.101
+worker-node-01.ideacube.co.kr 192.168.15.102
+worker-node-02.ideacube.co.kr 192.168.15.103
+
+          ### ALL
+          sudo su
+          vi /etc/fstab
+          #/swap
+          swapoff -a
+          free -m
+          
+          cat <<EOF | tee /etc/modules-load.d/k8s.conf
+          overlay
+          br_netfilter
+          EOF
+          
+          sudo modprobe overlay
+          sudo modprobe br_netfilter
+          
+          cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+          net.bridge.bridge-nf-call-iptables  = 1
+          net.bridge.bridge-nf-call-ip6tables = 1
+          net.ipv4.ip_forward                 = 1
+          EOF
+          
+          sysctl --system
+          
+          apt update
+          apt upgrade -y
+          apt install apt-transport-https ca-certificates curl jq gpg -y
+          curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+          echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | tee /etc/apt/sources.list.d/kubernetes.list
+          
+          cat /etc/apt/sources.list.d/kubernetes.list
+          
+          apt install containerd kubelet kubeadm kubectl
+          
+          mkdir -p /etc/containerd
+          containerd config default > /etc/containerd/config.toml
+          vi /etc/containerd/config.toml
+          SystemdCgroup = true
+          systemctl restart containerd
+          free -h
+          sysctl --system
+          
+          /etc/containerd/config.toml
+          sandbox_image = "registry.k8s.io/pause:3.8" -> "registry.k8s.io/pause:3.9"
+
+          
           
