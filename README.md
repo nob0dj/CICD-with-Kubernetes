@@ -84,8 +84,8 @@ KUT CI/CD with Kubernetes
 
 - harbor.ideacube.co.kr         192.168.15.50
 
-          apt update && sudo apt full-upgrade
-          apt install apt-transport-https ca-certificates curl 
+          sudo apt update && sudo apt full-upgrade
+          sudo apt install apt-transport-https ca-certificates curl 
           
           # Add Docker's official GPG key:
           sudo apt-get update
@@ -199,8 +199,8 @@ KUT CI/CD with Kubernetes
 ### Etc
 - Docker install Ubuntu
  
-          apt update && sudo apt full-upgrade
-          apt install apt-transport-https ca-certificates curl 
+          sudo apt update && sudo apt full-upgrade
+          sudo apt install apt-transport-https ca-certificates curl 
           
           # Add Docker's official GPG key:
           sudo apt-get update
