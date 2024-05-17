@@ -80,6 +80,8 @@ KUT CI/CD with Kubernetes
           # id : admin
           # password : -> /var/jenkins_home/secrets/initialAdminPassword
 
+          # Install Git, Maven, Docker
+
 - harbor.ideacube.co.kr         192.168.15.50
 
           apt update && sudo apt full-upgrade
