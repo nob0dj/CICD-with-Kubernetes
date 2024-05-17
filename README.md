@@ -259,3 +259,8 @@ KUT CI/CD with Kubernetes
           git config --unset --global user.name
           git config --unset --global user.email
 
+- Docker Security Issues
+
+          // Security Issues 
+          sudo chmod 666 /var/run/docker.sock or sudo chown root:docker /var/run/docker.sock
+          sudo usermod -a -G docker jenkins
