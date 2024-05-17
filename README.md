@@ -100,7 +100,7 @@ KUT CI/CD with Kubernetes
 - worker-node-01.ideacube.co.kr 192.168.15.102 
 - worker-node-02.ideacube.co.kr 192.168.15.103
 
-## ALL
+* ALL
           sudo su
           vi /etc/fstab
           #/swap
@@ -144,7 +144,7 @@ KUT CI/CD with Kubernetes
           /etc/containerd/config.toml
           sandbox_image = "registry.k8s.io/pause:3.8" -> "registry.k8s.io/pause:3.9"
 
-## Control Panel
+* Control Panel
 
           kubeadm init --pod-network-cidr 10.10.0.0/16 --node-name k8s-control
           kubeadm token create --print-join-command
@@ -162,7 +162,35 @@ KUT CI/CD with Kubernetes
           $ sudo reboot
           ##################################
 
+## Etc
+- Docker install Ubuntu
+- 
+          apt update && sudo apt full-upgrade
+          apt install apt-transport-https ca-certificates curl 
           
+          # Add Docker's official GPG key:
+          sudo apt-get update
+          sudo apt-get install ca-certificates curl
+          sudo install -m 0755 -d /etc/apt/keyrings
+          sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+          sudo chmod a+r /etc/apt/keyrings/docker.asc
+          
+          # Add the repository to Apt sources:
+          echo \
+            "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+            $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+            sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+          sudo apt-get update
+          
+          sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+          
+          sudo docker run hello-world
+          sudo groupadd docker
+          sudo usermod -aG docker $USER
+          => logout
+          newgrp docker
+          docker run hello-world
+  
           
 
           
