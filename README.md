@@ -13,8 +13,8 @@ KUT CI/CD with Kubernetes
 | worker-node-02     | worker-node-02.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |                 |
 
 ## Ubuntu 64bit Server 22.04.x(Minimized)
-=> After installing ubuntu 64 server minimum specifications
-=> Create User => user1/1234
+- After installing ubuntu 64 server minimum specifications
+- Create User => user1/1234
           
           sudo su
           apt-get install net-tools iputils-ping
@@ -28,7 +28,7 @@ KUT CI/CD with Kubernetes
           netplan apply
 
 ## Settings for each server
-gitlab.ideacube.co.kr         192.168.15.30
+- gitlab.ideacube.co.kr         192.168.15.30
 
           sudo apt-get update
           sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
@@ -39,7 +39,7 @@ gitlab.ideacube.co.kr         192.168.15.30
           # Pin the version to limit auto-updates: sudo apt-mark hold gitlab-ce
           # Show what packages are held back: sudo apt-mark showhold
 
-jenkins.ideacube.co.kr        192.168.15.40
+- jenkins.ideacube.co.kr        192.168.15.40
 
           sudo apt-get update
           sudo apt-get install fontconfig openjdk-17-jre
@@ -51,7 +51,7 @@ jenkins.ideacube.co.kr        192.168.15.40
             /etc/apt/sources.list.d/jenkins.list > /dev/null
           sudo apt-get install jenkins
 
-harbor.ideacube.co.kr         192.168.15.50
+- harbor.ideacube.co.kr         192.168.15.50
 
           apt update && sudo apt full-upgrade
           apt install apt-transport-https ca-certificates curl 
@@ -96,9 +96,9 @@ harbor.ideacube.co.kr         192.168.15.50
           sudo ./install.sh
 
 
-k8s-control.ideacube.co.kr    192.168.15.101
-worker-node-01.ideacube.co.kr 192.168.15.102
-worker-node-02.ideacube.co.kr 192.168.15.103
+- k8s-control.ideacube.co.kr    192.168.15.101 
+- worker-node-01.ideacube.co.kr 192.168.15.102 
+- worker-node-02.ideacube.co.kr 192.168.15.103
 
           ### ALL
           sudo su
