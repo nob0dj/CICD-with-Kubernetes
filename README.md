@@ -15,16 +15,16 @@ KUT CI/CD with Kubernetes
 ## Ubuntu 64bit Server 22.04.x(Minimized)
 => After installing ubuntu 64 server minimum specifications
 => Create User => user1/1234
-sudo su
-apt-get install net-tools iputils-ping
-printf "Server Name(Each Server)" > /etc/hostname
-printf "\n192.168.15.30 gitlab.ideacube.co.kr\n192.168.15.40 jenkins.ideacube.co.kr\n192.168.15.50 harbor.ideacube.co.kr\n192.168.15.101 k8s-control.ideacube.co.kr\n192.168.15.102 worker-node-01.ideacube.co.kr\n192.168.15.103 worker-node-02.ideacube.co.kr\n\n" >> /etc/hosts
-
-cat /etc/hosts
-cat /etc/hostname
-cat /etc/netplan/00-installer-config.yaml
-=> check ip or change ip
-netplan apply
+          sudo su
+          apt-get install net-tools iputils-ping
+          printf "Server Name(Each Server)" > /etc/hostname
+          printf "\n192.168.15.30 gitlab.ideacube.co.kr\n192.168.15.40 jenkins.ideacube.co.kr\n192.168.15.50 harbor.ideacube.co.kr\n192.168.15.101 k8s-control.ideacube.co.kr\n192.168.15.102 worker-node-01.ideacube.co.kr\n192.168.15.103 worker-node-02.ideacube.co.kr\n\n" >> /etc/hosts
+          
+          cat /etc/hosts
+          cat /etc/hostname
+          cat /etc/netplan/00-installer-config.yaml
+          => check ip or change ip
+          netplan apply
 
 ## Settings for each server
 gitlab.ideacube.co.kr         192.168.15.30
