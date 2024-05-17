@@ -230,7 +230,9 @@ KUT CI/CD with Kubernetes
           java -version
 
 - Git
+ 
           sudo apt install git
      
 - Maven 
+
           sudo apt install maven     
