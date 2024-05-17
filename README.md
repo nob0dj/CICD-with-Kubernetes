@@ -100,7 +100,7 @@ KUT CI/CD with Kubernetes
 - worker-node-01.ideacube.co.kr 192.168.15.102 
 - worker-node-02.ideacube.co.kr 192.168.15.103
 
-### ALL
+## ALL
           sudo su
           vi /etc/fstab
           #/swap
@@ -144,7 +144,7 @@ KUT CI/CD with Kubernetes
           /etc/containerd/config.toml
           sandbox_image = "registry.k8s.io/pause:3.8" -> "registry.k8s.io/pause:3.9"
 
-### Control Panel
+## Control Panel
 
           kubeadm init --pod-network-cidr 10.10.0.0/16 --node-name k8s-control
           kubeadm token create --print-join-command
