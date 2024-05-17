@@ -15,6 +15,7 @@ KUT CI/CD with Kubernetes
 ## Ubuntu 64bit Server 22.04.x(Minimized)
 => After installing ubuntu 64 server minimum specifications
 => Create User => user1/1234
+          
           sudo su
           apt-get install net-tools iputils-ping
           printf "Server Name(Each Server)" > /etc/hostname
