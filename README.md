@@ -241,11 +241,19 @@ KUT CI/CD with Kubernetes
 
           git config user.name "Dennis"
           git config user.email "itgenius1004@gmail.com"
-          git config --list
+
 
 - Git config(Global)
 
           git config --global user.name "Dennis"
           git config --global user.email "itgenius1004@gmail.com"
 
+- Git Management
+
+          git config --list
+          git config --unset user.name
+          git config --unset user.email
+
+          git config --unset --global user.name
+          git config --unset --global user.email
 
