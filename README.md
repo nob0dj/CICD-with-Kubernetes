@@ -62,6 +62,9 @@ KUT CI/CD with Kubernetes
           # Pin the version to limit auto-updates: sudo apt-mark hold gitlab-ce
           # Show what packages are held back: sudo apt-mark showhold
 
+          # id : root
+          # password : -> /etc/gitlab/initial_root_password
+
 - jenkins.ideacube.co.kr        192.168.15.40
 
           sudo apt-get update
@@ -73,6 +76,9 @@ KUT CI/CD with Kubernetes
             https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
             /etc/apt/sources.list.d/jenkins.list > /dev/null
           sudo apt-get install jenkins
+
+          # id : admin
+          # password : -> /var/jenkins_home/secrets/initialAdminPassword
 
 - harbor.ideacube.co.kr         192.168.15.50
 
@@ -117,6 +123,9 @@ KUT CI/CD with Kubernetes
           
           sudo ./prepare.sh
           sudo ./install.sh
+
+          # id : admin
+          # password : Harbor12345 -> harbor.yml
 
 
 - k8s-control.ideacube.co.kr    192.168.15.101 
