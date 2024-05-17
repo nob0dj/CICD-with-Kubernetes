@@ -164,7 +164,7 @@ KUT CI/CD with Kubernetes
 
 ### Etc
 - Docker install Ubuntu
-- 
+ 
           apt update && sudo apt full-upgrade
           apt install apt-transport-https ca-certificates curl 
           
