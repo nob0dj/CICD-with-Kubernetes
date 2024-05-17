@@ -5,12 +5,12 @@ KUT CI/CD with Kubernetes
 | Server Name        | Server Hostname               | Specs                           | IP Address     | Port Forwarding(ssh) | Port Forwarding(http) |
 | ------------------ | ----------------------------- | ------------------------------- | -------------- | -------------------- | --------------------- |
 | windev             | windev                        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.10  |  -                   |  -                    |  
-| gitLab             | gitLab.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.30  |  22                  |  8080                 |
-| jenkins            | jeninks.ideacube.co.kr        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  23                  |  80                   |
-| harbor             | harbor.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  24                  |  9090                 |
-| k8s-control        | k8s-control.ideacube.co.kr    | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.101 |  25                  |  -                    |
-| worker-node-01     | worker-node-01.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  26                  |  -                    |
-| worker-node-02     | worker-node-02.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  27                  |  -                    |
+| gitLab             | gitLab.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.30  |  22 -> 22            |  8080 -> 8080         |
+| jenkins            | jeninks.ideacube.co.kr        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  23 -> 22            |  80 -> 80             |
+| harbor             | harbor.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  24 -> 22            |  8081 -> 80           |
+| k8s-control        | k8s-control.ideacube.co.kr    | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.101 |  25 -> 22            |  -                    |
+| worker-node-01     | worker-node-01.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  26 -> 22            |  -                    |
+| worker-node-02     | worker-node-02.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  27 -> 22            |  -                    |
 
 ### Visual Studio Code & VirtualBox
 
@@ -18,8 +18,15 @@ KUT CI/CD with Kubernetes
           Visual Studio Code
           
           VBoxManage setextradata global GUI/Input/HostKeyCombination 162,164
-          VBoxManage natnetwork add --netname NatNetwork --network "192.168.15.0/24" --enable --dhcp off --port-forward-4 "ssh:tcp:[]:22:[192.168.15.101]:22"
-          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:23:[192.168.15.102]:22"
+          VBoxManage natnetwork add --netname NatNetwork --network "192.168.15.0/24" --enable --dhcp off --port-forward-4 "ssh:tcp:[]:25:[192.168.15.101]:22"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:26:[192.168.15.102]:22"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:27:[192.168.15.103]:22"
+
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:8080:[192.168.15.30]:8080"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:80:[192.168.15.40]:80"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:8081:[192.168.15.50]:80"
+          
+          Vboxmanage natnetwork list
               
           code --install-extension MS-CEINTL.vscode-language-pack-ko
           code --install-extension ms-vscode-remote.remote-ssh
