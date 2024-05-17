@@ -12,6 +12,22 @@ KUT CI/CD with Kubernetes
 | worker-node-01     | worker-node-01.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |                 |
 | worker-node-02     | worker-node-02.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |                 |
 
+### Visual Studio Code & VirtualBox
+
+          VirtualBox
+          Visual Studio Code
+          
+          VBoxManage setextradata global GUI/Input/HostKeyCombination 162,164
+          VBoxManage natnetwork add --netname NatNetwork --network "192.168.15.0/24" --enable --dhcp off --port-forward-4 "ssh:tcp:[]:22:[192.168.15.101]:22"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:23:[192.168.15.102]:22"
+              
+          code --install-extension MS-CEINTL.vscode-language-pack-ko
+          code --install-extension ms-vscode-remote.remote-ssh
+          code --install-extension ms-azuretools.vscode-docker
+          code --install-extension vscjava.vscode-java-pack
+          code --install-extension vscjava.vscode-gradle
+          code --install-extension vmware.vscode-boot-dev-pack
+
 ### Ubuntu 64bit Server 22.04.x(Minimized)
 - After installing ubuntu 64 server minimum specifications
 - Create User => user1/1234
