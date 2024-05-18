@@ -19,12 +19,12 @@ KUT CI/CD with Kubernetes
           
           VBoxManage setextradata global GUI/Input/HostKeyCombination 162,164
           VBoxManage natnetwork add --netname NatNetwork --network "192.168.15.0/24" --enable --dhcp off --port-forward-4 "ssh:tcp:[]:25:[192.168.15.101]:22"
-          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:26:[192.168.15.102]:22"
-          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:27:[192.168.15.103]:22"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh1:tcp:[]:26:[192.168.15.102]:22"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh2:tcp:[]:27:[192.168.15.103]:22"
 
-          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:8080:[192.168.15.30]:8080"
-          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:80:[192.168.15.40]:80"
-          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh:tcp:[]:8081:[192.168.15.50]:80"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh3:tcp:[]:8080:[192.168.15.30]:8080"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh4:tcp:[]:80:[192.168.15.40]:80"
+          VBoxManage natnetwork modify --netname NatNetwork --port-forward-4 "ssh5:tcp:[]:8081:[192.168.15.50]:80"
           
           Vboxmanage natnetwork list
               
