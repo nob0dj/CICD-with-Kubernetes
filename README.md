@@ -7,7 +7,7 @@ KUT CI/CD with Kubernetes
 | windev             | windev                        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.10  |  -                   |  -                    |  
 | gitLab             | gitLab.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.30  |  22 -> 22            |  8080 -> 8080         |
 | jenkins            | jeninks.ideacube.co.kr        | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  23 -> 22            |  80 -> 80             |
-| harbor             | harbor.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.40  |  24 -> 22            |  8081 -> 80           |
+| harbor             | harbor.ideacube.co.kr         | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.50  |  24 -> 22            |  8081 -> 80           |
 | k8s-control        | k8s-control.ideacube.co.kr    | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.101 |  25 -> 22            |  -                    |
 | worker-node-01     | worker-node-01.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  26 -> 22            |  -                    |
 | worker-node-02     | worker-node-02.ideacube.co.kr | 2 vCPU, 4 GB RAM, 100GB Disk    | 192.168.15.102 |  27 -> 22            |  -                    |
@@ -75,6 +75,7 @@ KUT CI/CD with Kubernetes
           echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
             https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
             /etc/apt/sources.list.d/jenkins.list > /dev/null
+          apt-get update
           sudo apt-get install jenkins
 
           # id : admin
@@ -109,6 +110,8 @@ KUT CI/CD with Kubernetes
           sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
           
           sudo docker run hello-world
+
+          # 일반사용자 docker 사용을 위한 설정
           sudo groupadd docker
           sudo usermod -aG docker $USER
           => logout
@@ -118,21 +121,32 @@ KUT CI/CD with Kubernetes
           cd /tmp
           curl -s https://api.github.com/repos/goharbor/harbor/releases/latest | grep browser_download_url | cut -d '"' -f 4 | grep '\.tgz$' | wget -i -
           
-          tar -xzvf harbor-offline-installer-v2.10.2.
+          tar -xzvf harbor-offline-installer-v2.10.2.tgz
           sudo mv harbor /opt/
-          
+
+          cd /opt/harbor
           cp harbor.yml.tmpl harbor.yml
           sudo vi harbor.yml
           hostname : harbor.ideacube.co.kr
-          #https <- comment
+          #https <- 하위항목 모두 주석
           harbor_admin_password : 
           database :
           
-          sudo ./prepare.sh
+          sudo ./prepare # 설치전 작업수행
           sudo ./install.sh
 
           # id : admin
           # password : Harbor12345 -> harbor.yml
+
+
+          # http 허용 예외 등록
+          sudo vim /etc/docker/daemon.json
+          {
+                  "insecure-registries": ["harbor.ideacube.co.kr"]
+          }
+
+          sudo systemctl restart docker
+          docker info # insecure registry 확인            
 
           docker pull nginx:alpine
           docker images
@@ -141,7 +155,12 @@ KUT CI/CD with Kubernetes
           # 'harbor.ideacube.co.kr/library/nginx:alpine' -> the default tag 'nginx:alpine'
           
           docker tag nginx:alpine harbor.ideacube.co.kr/library/nginx:alpine
-          docker push harbor.ideacube.co.kr/library/nginx:alpine          
+
+          # 로그인후 push
+          docker login http://harbor.ideacube.co.kr
+          docker push harbor.ideacube.co.kr/library/nginx:alpine
+
+
 
 
 - k8s-control.ideacube.co.kr    192.168.15.101 
