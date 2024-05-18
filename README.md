@@ -127,8 +127,8 @@ KUT CI/CD with Kubernetes
           #https <- comment
           harbor_admin_password : 
           database :
-          
-          sudo ./prepare.sh
+
+          sudo ./prepare
           sudo ./install.sh
 
           # id : admin
