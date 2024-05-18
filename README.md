@@ -118,9 +118,9 @@ KUT CI/CD with Kubernetes
           cd /tmp
           curl -s https://api.github.com/repos/goharbor/harbor/releases/latest | grep browser_download_url | cut -d '"' -f 4 | grep '\.tgz$' | wget -i -
           
-          tar -xzvf harbor-offline-installer-v2.10.2.
+          tar -xzvf harbor-offline-installer-v2.10.2.tgz
           sudo mv harbor /opt/
-          
+          cd /opt/harbor
           cp harbor.yml.tmpl harbor.yml
           sudo vi harbor.yml
           hostname : harbor.ideacube.co.kr
